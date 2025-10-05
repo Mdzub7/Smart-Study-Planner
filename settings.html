@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Smart Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar (Navigation) -->
+        <aside class="sidebar left-sidebar">
+            <div class="logo">
+                <h1>Smart Study Planner</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="calendar.html">Calendar View</a></li>
+                    <li class="active"><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Center Column (Main Content) -->
+        <main class="main-content">
+            <div class="header">
+                <h2>Settings</h2>
+            </div>
+
+            <div class="settings-container">
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Theme</h4>
+                            <p>Choose your preferred color theme</p>
+                        </div>
+                        <div class="setting-control">
+                            <select id="theme-selector">
+                                <option value="dark">Dark (Default)</option>
+                                <option value="light">Light</option>
+                                <option value="system">System Preference</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Accent Color</h4>
+                            <p>Choose your preferred accent color</p>
+                        </div>
+                        <div class="setting-control color-options">
+                            <button class="color-option active" data-color="#4A6CFD" style="background-color: #4A6CFD;"></button>
+                            <button class="color-option" data-color="#FF5C5C" style="background-color: #FF5C5C;"></button>
+                            <button class="color-option" data-color="#00C49F" style="background-color: #00C49F;"></button>
+                            <button class="color-option" data-color="#FFB800" style="background-color: #FFB800;"></button>
+                            <button class="color-option" data-color="#9C27B0" style="background-color: #9C27B0;"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Font Size</h4>
+                            <p>Adjust the text size throughout the app</p>
+                        </div>
+                        <div class="setting-control">
+                            <div class="range-control">
+                                <input type="range" id="font-size" min="80" max="120" value="100">
+                                <span id="font-size-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Task Reminders</h4>
+                            <p>Get browser notifications for upcoming tasks</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="task-reminders">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Reminder Time</h4>
+                            <p>When to receive reminders before due date</p>
+                        </div>
+                        <div class="setting-control">
+                            <select id="reminder-time">
+                                <option value="1">1 hour before</option>
+                                <option value="3">3 hours before</option>
+                                <option value="12">12 hours before</option>
+                                <option value="24" selected>1 day before</option>
+                                <option value="48">2 days before</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Data Management</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Export Data</h4>
+                            <p>Download all your tasks as a JSON file</p>
+                        </div>
+                        <div class="setting-control">
+                            <button id="export-data" class="btn btn-secondary">Export</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Import Data</h4>
+                            <p>Restore your tasks from a backup file</p>
+                        </div>
+                        <div class="setting-control">
+                            <input type="file" id="import-file" accept=".json" style="display: none;">
+                            <button id="import-data" class="btn btn-secondary">Import</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Clear All Data</h4>
+                            <p>Remove all tasks and reset the application</p>
+                        </div>
+                        <div class="setting-control">
+                            <button id="clear-data" class="btn btn-danger">Clear Data</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>About</h3>
+                    <div class="about-info">
+                        <p>Smart Study Planner v1.0</p>
+                        <p>A client-side web application designed to help students organize their study schedules and track academic tasks.</p>
+                        <p><a href="home.html">Visit Homepage</a></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar (Widgets) -->
+        <aside class="sidebar right-sidebar">
+            <div class="widget help-widget">
+                <h3>Help & Tips</h3>
+                <div class="help-content">
+                    <div class="help-item">
+                        <h4>Data Privacy</h4>
+                        <p>All your data is stored locally in your browser. We recommend exporting your data regularly as a backup.</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>Notifications</h4>
+                        <p>Browser notifications must be enabled in your browser settings for reminders to work.</p>
+                    </div>
+                    <div class="help-item">
+                        <h4>Keyboard Shortcuts</h4>
+                        <ul class="shortcut-list">
+                            <li><span class="key">N</span> Add new task</li>
+                            <li><span class="key">S</span> Search tasks</li>
+                            <li><span class="key">?</span> Show all shortcuts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

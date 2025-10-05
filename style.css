@@ -227,11 +227,13 @@ a:hover {
 .task-actions {
     display: flex;
     align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
     gap: var(--spacing-sm);
+    margin-top: auto; /* Push to bottom of card */
 }
 
-/* Custom Checkbox */
 .task-complete-container {
+    margin-right: auto; /* This pushes the checkbox to the left */
     display: block;
     position: relative;
     padding-left: 25px;

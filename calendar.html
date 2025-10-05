@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Smart Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar (Navigation) -->
+        <aside class="sidebar left-sidebar">
+            <div class="logo">
+                <h1>Smart Study Planner</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li class="active"><a href="calendar.html">Calendar View</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Center Column (Main Content) -->
+        <main class="main-content">
+            <div class="header">
+                <h2>Calendar View</h2>
+                <div class="calendar-controls">
+                    <button id="prev-month" class="btn btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <h3 id="current-month">October 2025</h3>
+                    <button id="next-month" class="btn btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <button id="today-btn" class="btn btn-secondary">Today</button>
+                </div>
+            </div>
+
+            <div class="calendar-container">
+                <div class="calendar-view">
+                    <div class="calendar-header">
+                        <div class="weekday">Sunday</div>
+                        <div class="weekday">Monday</div>
+                        <div class="weekday">Tuesday</div>
+                        <div class="weekday">Wednesday</div>
+                        <div class="weekday">Thursday</div>
+                        <div class="weekday">Friday</div>
+                        <div class="weekday">Saturday</div>
+                    </div>
+                    <div id="calendar-grid" class="calendar-grid">
+                        <!-- Calendar days will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-detail" id="day-detail">
+                <div class="day-detail-header">
+                    <h3 id="selected-date">October 5, 2025</h3>
+                    <button id="add-task-day" class="btn btn-primary">Add Task</button>
+                </div>
+                <div id="day-tasks" class="day-tasks">
+                    <!-- Tasks for selected day will be shown here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar (Widgets) -->
+        <aside class="sidebar right-sidebar">
+            <div class="widget progress-widget">
+                <h3>Progress</h3>
+                <div class="progress-container">
+                    <div class="progress-circle">
+                        <div class="progress-value">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text">You have completed 0 of 0 tasks.</p>
+                </div>
+            </div>
+
+            <div class="widget upcoming-widget">
+                <h3>Upcoming Deadlines</h3>
+                <div id="upcoming-tasks" class="upcoming-tasks">
+                    <!-- Upcoming tasks will be shown here -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Adding/Editing Tasks (same as in index.html) -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Task</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="task-title">Task Title</label>
+                        <input type="text" id="task-title" name="title" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-subject">Subject/Course</label>
+                        <input type="text" id="task-subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Due Date</label>
+                        <input type="date" id="task-due-date" name="dueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority Level</label>
+                        <div class="priority-options">
+                            <label class="priority-option">
+                                <input type="radio" name="priority" value="low" checked>
+                                <span class="priority-label low">Low</span>
+                            </label>
+                            <label class="priority-option">
+                                <input type="radio" name="priority" value="medium">
+                                <span class="priority-label medium">Medium</span>
+                            </label>
+                            <label class="priority-option">
+                                <input type="radio" name="priority" value="high">
+                                <span class="priority-label high">High</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-description">Description</label>
+                        <textarea id="task-description" name="description" rows="3"></textarea>
+                    </div>
+                    <input type="hidden" id="task-id" name="id">
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-task">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="save-task">Save Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="calendar.js"></script>
+</body>
+</html>
