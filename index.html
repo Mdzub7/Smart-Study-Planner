@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar (Navigation) -->
+        <aside class="sidebar left-sidebar">
+            <div class="logo">
+                <h1>Smart Study Planner</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#">Calendar View</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Center Column (Main Content) -->
+        <main class="main-content">
+            <div class="header">
+                <h2>My Tasks</h2>
+                <button id="add-task-btn" class="btn btn-primary">Add New Task</button>
+            </div>
+
+            <div class="tasks-container">
+                <div class="pending-tasks">
+                    <h3>Pending Tasks</h3>
+                    <div id="pending-tasks-list" class="tasks-list">
+                        <!-- Task cards will be dynamically added here -->
+                    </div>
+                </div>
+
+                <div class="completed-tasks">
+                    <h3>Completed Tasks</h3>
+                    <div id="completed-tasks-list" class="tasks-list">
+                        <!-- Completed task cards will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar (Widgets) -->
+        <aside class="sidebar right-sidebar">
+            <div class="widget progress-widget">
+                <h3>Progress</h3>
+                <div class="progress-container">
+                    <div class="progress-circle">
+                        <div class="progress-value">0%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text">You have completed 0 of 0 tasks.</p>
+                </div>
+            </div>
+
+            <div class="widget mini-calendar">
+                <h3>Calendar</h3>
+                <div class="calendar-container">
+                    <!-- Mini calendar will be added here -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Adding/Editing Tasks -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Task</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="task-title">Task Title</label>
+                        <input type="text" id="task-title" name="title" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-subject">Subject/Course</label>
+                        <input type="text" id="task-subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Due Date</label>
+                        <input type="date" id="task-due-date" name="dueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority Level</label>
+                        <div class="priority-options">
+                            <label class="priority-option">
+                                <input type="radio" name="priority" value="low" checked>
+                                <span class="priority-label low">Low</span>
+                            </label>
+                            <label class="priority-option">
+                                <input type="radio" name="priority" value="medium">
+                                <span class="priority-label medium">Medium</span>
+                            </label>
+                            <label class="priority-option">
+                                <input type="radio" name="priority" value="high">
+                                <span class="priority-label high">High</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-description">Description</label>
+                        <textarea id="task-description" name="description" rows="3"></textarea>
+                    </div>
+                    <input type="hidden" id="task-id" name="id">
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-task">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="save-task">Save Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Card Template -->
+    <template id="task-card-template">
+        <div class="task-card" data-id="">
+            <div class="task-priority"></div>
+            <div class="task-content">
+                <h4 class="task-title"></h4>
+                <p class="task-subject"></p>
+                <p class="task-due-date"></p>
+                <div class="task-actions">
+                    <label class="task-complete-container">
+                        <input type="checkbox" class="task-complete">
+                        <span class="checkmark"></span>
+                    </label>
+                    <button class="btn-icon edit-task">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                    <button class="btn-icon delete-task">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
