@@ -1,10 +1,12 @@
 /* CSS Variables for theming */
 :root {
-    /* Colors */
-    --bg-dark: #1A1A2E;
-    --card-bg: #1F2840;
+    /* Colors - Updated to black, grey, and cream theme */
+    --bg-dark: #121212;
+    --card-bg: #1E1E1E;
+    --sidebar-bg: #2D2D2D;
     --accent-color: #4A6CFD;
-    --text-color: #F0F0F0;
+    --text-color: #F5F5DC;
+    --text-muted: #E8E8D0;
     --priority-high: #FF5C5C;
     --priority-medium: #FFB800;
     --priority-low: #00C49F;
@@ -65,7 +67,7 @@ a:hover {
 /* Sidebar Styles */
 .sidebar {
     padding: var(--spacing-lg);
-    background-color: var(--card-bg);
+    background-color: var(--sidebar-bg);
     overflow-y: auto;
 }
 
