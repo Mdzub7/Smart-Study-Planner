@@ -1,5 +1,7 @@
 # Smart Study Planner
 
+🚀 **Live Demo:** [https://mdzub7.github.io/Smart-Study-Planner/](https://mdzub7.github.io/Smart-Study-Planner/)
+
 ## Overview
 Smart Study Planner is a client-side web application designed to help students overcome the challenges of organizing their study schedules and tracking academic tasks. It provides an intuitive, visually engaging interface for users to create, view, and manage their study goals, complete with reminders and progress tracking.
 
@@ -80,3 +82,12 @@ Students, especially in high school and university, often struggle with effectiv
 
 ### Home Page
 ![Home Page](images/home.png)
+
+## Project Documentation & Certificates
+
+### Project Report
+📄 [Final Web Development Project Report](Mohd-Zubair-FinalWebDevProject.pdf)
+
+### Certificates
+![Certificate 1](certificate1.png)
+![Certificate 2](certificate2.png)
